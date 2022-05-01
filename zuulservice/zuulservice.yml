@@ -1,10 +1,13 @@
-zuul.ignored-services: "organizationservice"
+# ignored- services 被 设置 为*， 以 排除 所有 基于 Eureka 服务 ID 的 路 由 的 注册
+zuul.ignored-services: "*"  
 zuul.prefix:  /api
 zuul.routes.organizationservice: /organization/**
-# zuul.routes.licensingservice: /licensing/**
-# zuul.routes.authenticationservice: /auth/**
-#zuul.routes.licensestatic.path: /licensestatic/**
-#zuul.routes.licensestatic.url:  http://licenseservice-static:8081
+zuul.routes.licensingservice: /licensing/**
+zuul.routes.authenticationservice: /auth/**
+# 　 许可证 服务 的 静态 路 由
+zuul.routes.licensestatic.path: /licensestatic/**
+# 已 建立 许可证 服务 的 静态 实例， 它将 被 直接 调用， 而 不 是由 Zuul 通过 Eureka 调用
+zuul.routes.licensestatic.url:  http://licenseservice-static:8081
 #zuul.routes.licensestatic.serviceId: licensestatic
 #zuul.routes.licensestatic.ribbon.listOfServers: http://licenseservice-static1:8081, http://licenseservice-static2:8082
 #ribbon.eureka.enabled: false
